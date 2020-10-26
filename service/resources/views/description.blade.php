@@ -16,8 +16,9 @@
             <div class="row">
                 まずは目標を設定
             </div>
+            <p><a href="{{route('register')}}">登録</a></p>
+            <p><a href="{{route('goal.index')}}">使う</a></p>
             <section>
-                <p><a href="register">使う</a></p>
             </section>
 
 
