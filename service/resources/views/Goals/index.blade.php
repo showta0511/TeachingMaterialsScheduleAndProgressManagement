@@ -12,7 +12,7 @@
         @endif
         @if(!empty($goal))
             <div　class="container">
-                <span><strong>なりたい自分</strong></span>
+                <span><strong><a href="{{route('goal.show',['goal'=>$goal->id])}}">なりたい自分</a></strong></span>
                 <h1>{{$goal->title}}</h1>
             </div>
             <div　class="container">
