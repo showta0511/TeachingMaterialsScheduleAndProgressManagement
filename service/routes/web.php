@@ -22,4 +22,15 @@ Route::get('/', function () {
     return view('description');
 })->name('description');
 
-Route::get('service',[GoalController::class,'index'])->name('service');
+
+
+//GoalControllerをURI、ルート名でグループ化
+Route::group(['middleware' => ['auth'],'prefix' => 'goal', 'as' => 'goal.'], function () {
+    Route::get('/',[GoalController::class,'index'])->name('index');
+    Route::get('create',[GoalController::class,'create'])->name('create');
+    Route::post('store',[GoalController::class,'store'])->name('store');
+    Route::get('edit',[GoalController::class,'edit'])->name('edit');
+    Route::put('update',[GoalController::class,'update'])->name('update');
+    Route::get('del_conform',[GoalController::class,'del_conform'])->name('del_conform');
+    Route::delete('destroy',[GoalController::class,'destroy'])->name('destroy');
+});
