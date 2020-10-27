@@ -1,10 +1,25 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container">
+<div id="hello">
     <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 centered">
+          <h1>Bolt Template</h1>
+          <h2>Awesome Bootstrap Template</h2>
+        </div>
+        <!-- /col-lg-8 -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /hello -->
+<div class="container"id="hello">
+    <div class="container">
+        <div class="row">
         @if(empty($goal))
-            <div class="col-md-8">
+            <div class="col-lg-8 col-lg-offset-2 centered">
                 <h1>ようこそ！</h1>
                 <p>さっそく理想の入力しよう！</p>
                 <a href="{{route('goal.create')}}">作成する</a>
@@ -56,6 +71,7 @@
                 </div>
             </div>
         @endif
+        </div>
     </div>
 </div>
 @endsection
