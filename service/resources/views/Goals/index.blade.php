@@ -16,21 +16,43 @@
                 <h1>{{$goal->title}}</h1>
             </div>
             <div　class="container">
-                <span>
-                    @if(!empty($for_the_goals))
-                        @foreach($for_the_goals as $for_the_goal)
-                            <h2>{{$for_the_goal}}</h2>
-                        @endforeach
-                    @endif
-                </span>
                 <div　class="container">
                     <h3>理想に近づく為に必要な要素はなにかな？</h3>
-                    <p>好きなだけ作成しよう</p>
-                    <form action="#">
-                        <label for="#">必要な要素</label>
-                        <input id="#" type="text">
-                        <input type="submit" value="作成する">
-                    </form>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            <br>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        作成する
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                        <p>好きなだけ作成しよう</p>
+                            <form action="{{route('for_goal.store')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="goal_id" value="{{$goal->id}}">
+                                <label for="title">必要な要素</label>
+                                <input id="title" name="title" type="text" value="{{old('title')}}">
+                                <input type="submit" value="作成する">
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                    @if(!empty($for_goals))
+                        @foreach($for_goals as $for_goal)
+                            <h2>{{$for_goal->title}}</h2>
+                            <a href="{{route('for_goal.show',['for_goal'=>$for_goal->id])}}">・・・</a>
+                        @endforeach
+                    @endif
+                </div>
                 </div>
             </div>
         @endif
