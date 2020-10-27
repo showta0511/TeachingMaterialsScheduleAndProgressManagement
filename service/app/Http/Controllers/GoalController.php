@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Goal;
+use App\Models\ForTheGoal;
 
 use App\Http\Requests\GoalRequest;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +13,8 @@ class GoalController extends Controller
 {
     public function index(){
         $goal=Goal::where('user_id',Auth::id())->first();
-        $for_the_goal=null;
-        $param=compact('goal','for_the_goal');
+        $for_goals=ForTheGoal::where('goal_id',$goal->id)->get();
+        $param=compact('goal','for_goals');
         return view('Goals.index',$param);
     }
 
