@@ -76,6 +76,12 @@ hr {
   padding: 0;
 }
 
+/* menu */
+.main_menu {
+  background-color: #082B49;
+}
+
+/* nav */
 .navbar {
   font-weight: 800;
   font-size: 14px;
@@ -115,22 +121,22 @@ hr {
 
 /* WRAP SECTIONS */
 
-/* hello */
+/* main */
 
-#hello {
+#main {
   width: 100%;
   padding-top: 250px;
   padding-bottom: 250px;
 }
 
-#hello h1 {
+#main h1 {
   font-size: 90px;
   font-weight: 700;
   letter-spacing: 3px;
   color: #74cfae;
 }
 
-#hello h2 {
+#main h2 {
   color: #c0c0c0;
   font-weight: 400;
 }
