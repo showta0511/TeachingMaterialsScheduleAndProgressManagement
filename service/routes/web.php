@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ForTheGoalController;
+use App\Http\Controllers\TeachingMaterialController;
 
 Auth::routes();
 
@@ -31,4 +32,10 @@ Route::group(['middleware' => ['auth'],'prefix' => 'for_goal', 'as' => 'for_goal
     Route::put('update/{update}',[ForTheGoalController::class,'update'])->name('update');
     Route::get('del_conform/{del}',[ForTheGoalController::class,'del_conform'])->name('del_conform');
     Route::delete('destroy/{del}',[ForTheGoalController::class,'destroy'])->name('destroy');
+});
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource("teaching_material",TeachingMaterialController::class);
+    Route::get('teaching_material/del_conform/{teaching_material}',[TeachingMaterialController::class,'del_conform'])->name('teaching_material.del_conform');
 });

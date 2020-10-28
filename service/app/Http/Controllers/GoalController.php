@@ -13,8 +13,12 @@ class GoalController extends Controller
 {
     public function index(){
         $goal=Goal::where('user_id',Auth::id())->first();
-        $for_goals=ForTheGoal::where('goal_id',$goal->id)->get();
-        $param=compact('goal','for_goals');
+        if(!empty($goal)){
+            $for_goals=ForTheGoal::where('goal_id',$goal->id)->get();
+            $param=compact('goal','for_goals');
+        }else{
+            $param=compact('goal');
+        }
         return view('Goals.index',$param);
     }
 
