@@ -19,8 +19,8 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="motive">内容</label>
-                    <textarea class="form-control is-invalid" id="content" rows="3" name="motive" >{{$form->content}}</textarea>
+                    <label for="content">内容</label>
+                    <textarea class="form-control is-invalid" id="content" rows="3" name="content" >{{$form->content}}</textarea>
 
                     @if($errors->has('motive'))
                         <span class="invalid-feedback">
@@ -29,9 +29,9 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="motive">ページ数</label>
-                    <input class="form-control is-invalid" id="first_page" rows="3" name="motive" value="{{$form->first_page}}">〜
-                    <input class="form-control is-invalid" id="first_page" rows="3" name="motive" value="{{$form->last_page}}">
+                    <label for="page">ページ数</label>
+                    <input class="form-control is-invalid" id="page" rows="3" name="first_page" value="{{$form->first_page}}">〜
+                    <input class="form-control is-invalid" id="page" rows="3" name="last_page" value="{{$form->last_page}}">
 
                     @if($errors->has('motive'))
                         <span class="invalid-feedback">

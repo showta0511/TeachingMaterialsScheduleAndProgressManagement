@@ -82,7 +82,7 @@ class TeachingMaterialController extends Controller
         $teaching_material=$request->all();
         unset($teaching_material['_token']);
         $form->fill($teaching_material)->save();
-        return view("TeachingMaterial.show",["teaching_material"=>$teaching_material]);
+        return redirect(route('teaching_material.show',["teaching_material"=>$form->id]));
     }
 
     public function del_conform($teaching_material){
