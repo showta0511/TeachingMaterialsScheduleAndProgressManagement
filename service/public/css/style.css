@@ -2060,6 +2060,8 @@ ul {
   .main_menu .navbar-nav .nav-link:hover {
     color: #fff !important;
   }
+
+
   /* line 168, /Applications/MAMP/htdocs/palash/cl/august 2019/198 Animal adoption/198 Animal adoption html/sass/_menu.scss */
   .main_menu .dropdown .dropdown-menu {
     transform: scale(1, 0);

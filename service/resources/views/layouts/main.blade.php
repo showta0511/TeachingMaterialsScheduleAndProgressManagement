@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
     <!-- style CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{{ asset('css/add.css') }}">
 
 
     <!-- Bootstrap CSS -->
@@ -51,19 +53,17 @@
     <div id="app">
         <nav class="navbar navbar-expand-md main_menu shadow-sm">
             <div class="container">
-                <li class="nav-item">
-                    <a class="navbar-brand" href="{{ route('goal.index') }}">
-                        理想追求と教材スケジュール管理
-                    </a>
-                </li>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('goal.index') }}">
+                            理想追求と教材スケジュール管理
+                        </a>
+                        </li>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
