@@ -19,7 +19,6 @@
             <span><strong>動機</strong></span>
             <h3>{{$goal->motive}}</h3>
         </div>
-
     </div>
 </div>
 @endsection

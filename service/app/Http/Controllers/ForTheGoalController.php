@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ForTheGoalRequest;
 use App\Models\ForTheGoal;
+use App\Models\Schedule;
 
 
 class ForTheGoalController extends Controller
@@ -20,7 +21,9 @@ class ForTheGoalController extends Controller
 
     public function show($for_goal){
         $for_goal=ForTheGoal::find($for_goal);
-        return view('ForTheGoals.show',['for_goal'=>$for_goal]);
+        $schedule=Schedule::where("for_goal_id",$for_goal->id)->first();
+        $param=compact("schedule","for_goal");
+        return view('ForTheGoals.show',$param);
     }
 
     public function edit($edit){
@@ -33,7 +36,7 @@ class ForTheGoalController extends Controller
         $for_goal = $request->all();
         unset($for_goal['_token']);
         $form->fill($for_goal)->save();
-        return redirect(route('for_goal.show',['for_goal'=>$update]));
+        return redirect(route('for_goal.show',['for_goal'=>$form->id]));
     }
 
     public function del_conform($del){
