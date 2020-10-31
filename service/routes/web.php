@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ForTheGoalController;
 use App\Http\Controllers\TeachingMaterialController;
+use App\Http\Controllers\ScheduleController;
 
 Auth::routes();
 
@@ -36,6 +37,14 @@ Route::group(['middleware' => ['auth'],'prefix' => 'for_goal', 'as' => 'for_goal
 
 
 Route::group(['middleware' => ['auth']], function () {
+    //teaching_material
     Route::resource("teaching_material",TeachingMaterialController::class);
+    //delete時の確認画面
     Route::get('teaching_material/del_conform/{teaching_material}',[TeachingMaterialController::class,'del_conform'])->name('teaching_material.del_conform');
+    //schedule
+    Route::resource("schedule",ScheduleController::class)->except(['index','create']);
+
+    Route::get('schedule/create/{for_goal_id}',[ScheduleController::class,'create'])->name('schedule.create');
+
+    Route::get('schedule/confirmation/{for_goal_id}',[ScheduleController::class,'confirmation'])->name('schedule.confirmation');
 });
