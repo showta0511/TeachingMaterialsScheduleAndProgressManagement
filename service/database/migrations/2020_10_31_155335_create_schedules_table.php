@@ -15,16 +15,13 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('teaching_material_id')->unsigned();
-            $table->foreign('teaching_material_id')->references('id')->on('teaching_materials');
-            $table->bigInteger('for_goal_id')->unsigned();
-            $table->foreign('for_goal_id')->references('id')->on('for_the_goals');
-            $table->string('to_learn', 150);
-            $table->date("first_day");
-            $table->date("last_day")->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('setting_schedule_id')->unsigned();
+            $table->foreign('setting_schedule_id')->references('id')->on('setting_schedules');
+            $table->date("date");
             $table->integer("first_page");
             $table->integer("last_page");
-            $table->integer("daily_learning_page")->nullable();
             $table->timestamps();
         });
     }

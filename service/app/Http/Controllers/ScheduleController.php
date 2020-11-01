@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TeachingMaterial;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ScheduleRequest;
@@ -11,31 +10,47 @@ use App\Http\Requests\ScheduleRequest;
 class ScheduleController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($for_goal_id)
+    public function create()
     {
-        $teaching_materials=TeachingMaterial::where("user_id",Auth::id())->get();
-        $param=compact("for_goal_id","teaching_materials");
-        return view("Schedules.create",$param);
+        //test connection
+        //form書く！
+        return "completed connect!";
+
+        // 毎日するページ数を使って作成
+        // formからスケジュールの設定内容を取得
+        // 保存
+
+        //別table準備(設定内容、for_the_goalに紐ずく)
+        //日程の差分を求める
+        //開始日からカウント（カレンダーを参考にして30日で月が変わる）
+        //ページ数を毎日するページ数ずつカウント
+        //カウントしたものをeditに出力(formのinputタグに数字を当てはめ編集できるようにする
+        //formが送信されたら保存
     }
 
-    public function store(ScheduleRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $data=$request->all();
-        //リクエストデータを受け取る
-        $form=new Schedule;
-        unset($data['_token']);
-        $form->fill($data)->save();
-        //保存する
-        return redirect(route("for_goal.show",["for_goal"=>$form->for_goal_id]));
-    }
-
-    public function confirmation()
-    {
-        return"ok!data";
+        //
     }
 
     /**
@@ -44,10 +59,9 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($schedule)
+    public function show($id)
     {
-        $schedule_content=Schedule::find($schedule)->first();
-        return view("Schedules.show",["schedule_content"=>$schedule_content]);
+        //
     }
 
     /**
@@ -56,10 +70,9 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($schedule)
+    public function edit($id)
     {
-        $schedule_content=Schedule::find($schedule)->first();
-        return view("Schedules.edit",["schedule_content"=>$schedule_content]);
+        //
     }
 
     /**
@@ -69,13 +82,9 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ScheduleRequest $request, $schedule)
+    public function update(Request $request, $id)
     {
-        $schedule_content=$request->all();
-        $form=Schedule::find($schedule)->first();
-        unset($schedule_content["_token"]);
-        $form->fill($schedule_content)->save();
-        return redirect(route('schedule.show',['schedule'=>$schedule]));
+        //
     }
 
     /**
@@ -84,11 +93,8 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($schedule)
+    public function destroy($id)
     {
-        $schedule_content=Schedule::find($schedule)->first();
-        $for_goal_id=$schedule_content->for_goal_id;
-        $schedule_content->delete();
-        return redirect(route('for_goal.show',['for_goal'=>$for_goal_id]));
+        //
     }
 }

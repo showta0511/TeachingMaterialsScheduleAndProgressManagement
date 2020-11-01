@@ -7,7 +7,6 @@
             <div class="col-sm-10">
                 <strong>なりたい自分</strong>
                 <h1>{{$for_goal->title}}</h1>
-                <a href="{{route('schedule.confirmation',['for_goal_id'=>$for_goal->id])}}">テスト</a>
             </div>
             <div class="col-sm-1">
                 <a href="{{route('for_goal.edit',['edit'=>$for_goal->id])}}">編集</a>
@@ -22,9 +21,9 @@
                     <tr>
                         <th>目標達成に必要な要素</th>
                         @if(empty($schedule))
-                            <th><a href="{{route('schedule.create',['for_goal_id'=>$for_goal->id])}}">作成する</a></th>
+                            <th><a href="{{route('setting_schedule.create',['for_goal_id'=>$for_goal->id])}}">作成する</a></th>
                         @else
-                            <th><a href="{{route('schedule.show',['schedule'=>$schedule->id])}}">設定内容</a></th>
+                            <th><a href="{{route('setting_schedule.show',['setting_schedule'=>$schedule->id])}}">設定内容</a></th>
                         @endif
                     </tr>
                     <tr>

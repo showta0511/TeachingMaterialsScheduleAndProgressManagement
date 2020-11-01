@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
-    protected $guarded = array("id","created_at","update_at");
-
-    public function ForTheGoal(){
-        return $this->belongsTo("App\Models\ForTheGoal");
+    public function User(){
+        return $this->belongsTo("App\Models\User");
     }
 
-    public function teaching_material(){
-        return $this->belongsTo("App\Models\TeachingMaterial");
+    public function SettingSchedule(){
+        return $this->belongsTo("App\Models\SettingSchedule");
     }
 }
