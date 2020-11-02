@@ -16,4 +16,7 @@ class ForTheGoal extends Model
     public function goal(){
         return $this->belongsTo("App\Models\Goal");
     }
+    public function for_the_goal(){
+        return $this->belongsTo("App\Models\ForTheGoal");
+    }
 }

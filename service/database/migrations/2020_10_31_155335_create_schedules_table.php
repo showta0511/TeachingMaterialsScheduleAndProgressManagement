@@ -17,6 +17,8 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('for_goal_id')->unsigned();
+            $table->foreign('for_goal_id')->references('id')->on('for_the_goals');
             $table->bigInteger('setting_schedule_id')->unsigned();
             $table->foreign('setting_schedule_id')->references('id')->on('setting_schedules');
             $table->date("date");

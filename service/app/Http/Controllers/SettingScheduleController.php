@@ -28,7 +28,7 @@ class SettingScheduleController extends Controller
         $form=new SettingSchedule;
         unset($data['_token']);
         $form->fill($data)->save();
-        return redirect(route("schedule.create"));
+        return redirect(route("schedule.generation_schedule",['setting_schedule'=>$form->id]));
     }
 
     /**

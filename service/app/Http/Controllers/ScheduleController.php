@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SettingSchedule;
 use App\Models\Schedule;
+use App\Models\ForTheGoal;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ScheduleRequest;
 
@@ -28,13 +30,41 @@ class ScheduleController extends Controller
     {
         //test connection
         //form書く！
-        return "completed connect!";
+
 
         // 毎日するページ数を使って作成
         // formからスケジュールの設定内容を取得
         // 保存
 
         //別table準備(設定内容、for_the_goalに紐ずく)
+        //日程の差分を求める
+        //開始日からカウント（カレンダーを参考にして30日で月が変わる）
+        //ページ数を毎日するページ数ずつカウント
+        //カウントしたものをeditに出力(formのinputタグに数字を当てはめ編集できるようにする
+        //formが送信されたら保存
+    }
+
+    //setting_scheduleからスケジュールを表示し編集できるようにする
+    public function generation_schedule($setting_schedule){
+        // 一日何ページするかで作成する//
+        $form=SettingSchedule::find($setting_schedule)->first();
+        //使うデータを変数に保存
+        $first_day=$form->first_day;
+        $first_page=$form->first_page;
+        $last_page=$form->last_page;
+        $daily_learning_page=$form->daily_learning_page;
+        $for_goal_id=$form->for_goal_id;
+        //進めるページ数を求める
+        $learning_page=Schedule::learning_page($first_page,$last_page);
+        //教材を進める期間を求める
+        $learning_period=Schedule::learning_period($learning_page,$daily_learning_page);
+        //教材の終了日を求める
+        $end_date_of_learning=Schedule::end_date_of_learning($first_day,$learning_period);
+        //送信//
+        $param=compact("for_goal_id","first_page","last_page","daily_learning_page","first_day","learning_period","end_date_of_learning","setting_schedule");
+        return view('Schedules.generation_schedule',$param);
+
+
         //日程の差分を求める
         //開始日からカウント（カレンダーを参考にして30日で月が変わる）
         //ページ数を毎日するページ数ずつカウント
@@ -50,7 +80,11 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $schedule=$request->all();
+        $form=new Schedule;
+        unset($schedule["_token"]);
+        $form->fill($schedule)->save();
+        return redirect(route('for_goal.show',['for_goal'=>$form->for_goal_id]));
     }
 
     /**

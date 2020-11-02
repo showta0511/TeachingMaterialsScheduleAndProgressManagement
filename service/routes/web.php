@@ -52,4 +52,6 @@ Route::group(['middleware' => ['auth']], function () {
     //schedule
     Route::resource("schedule",ScheduleController::class);
 
+    Route::get("schedule/generation/{setting_schedule}",[ScheduleController::class,"generation_schedule"])->name('schedule.generation_schedule');
+
 });

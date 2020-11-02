@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <a href="{{route('setting_schedule.edit',['schedule'=>$schedule_content->id])}}">編集</a>
-    <form action="{{route('setting_schedule.destroy',['schedule'=>$schedule_content->id])}}" method="post">
+    <a href="{{route('setting_schedule.edit',['setting_schedule'=>$schedule_content->id])}}">編集</a>
+    <form action="{{route('setting_schedule.destroy',['setting_schedule'=>$schedule_content->id])}}" method="post">
         @csrf
         <input type="hidden" name="_method" value="delete">
         <input type="submit" value="設定を削除">

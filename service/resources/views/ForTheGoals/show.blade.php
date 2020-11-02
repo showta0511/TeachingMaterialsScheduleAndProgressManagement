@@ -20,10 +20,11 @@
                 <thead>
                     <tr>
                         <th>目標達成に必要な要素</th>
-                        @if(empty($schedule))
+                        @if(empty($setting_schedule))
                             <th><a href="{{route('setting_schedule.create',['for_goal_id'=>$for_goal->id])}}">作成する</a></th>
                         @else
-                            <th><a href="{{route('setting_schedule.show',['setting_schedule'=>$schedule->id])}}">設定内容</a></th>
+                            <th><a href="{{route('setting_schedule.show',['setting_schedule'=>$setting_schedule->id])}}">設定内容</a></th>
+
                         @endif
                     </tr>
                     <tr>
@@ -32,18 +33,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10/29</td>
-                        <td>10~20</td>
-                    </tr>
-                    <tr>
-                        <td>10/29</td>
-                        <td>10~20</td>
-                    </tr>
-                    <tr>
-                        <td>10/29</td>
-                        <td>10~20</td>
-                    </tr>
+                    @foreach($schedules as $schedule)
+                        <tr>
+                            <td>{{$schedule->date}}</td>
+                            <td>{{$schedule->first_page}}</td>
+                            <td>{{$schedule->last_page}}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
