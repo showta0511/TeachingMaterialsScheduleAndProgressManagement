@@ -6,8 +6,11 @@ use App\Http\Controllers\ForTheGoalController;
 use App\Http\Controllers\TeachingMaterialController;
 use App\Http\Controllers\SettingScheduleController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\Auth\LoginController;
 
 Auth::routes();
+
+Route::get('guest',[LoginController::class,'guest_login'])->name('login.guest');
 
 Route::get('/', function () {
     return view('description');
