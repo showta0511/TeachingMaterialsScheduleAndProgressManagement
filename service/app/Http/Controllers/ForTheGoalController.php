@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ForTheGoalRequest;
 use App\Models\ForTheGoal;
 use App\Models\Schedule;
+use App\Models\SettingSchedule;
 
 
 class ForTheGoalController extends Controller
@@ -21,8 +22,9 @@ class ForTheGoalController extends Controller
 
     public function show($for_goal){
         $for_goal=ForTheGoal::find($for_goal);
-        $schedule=Schedule::where("for_goal_id",$for_goal->id)->first();
-        $param=compact("schedule","for_goal");
+        $setting_schedule=SettingSchedule::where("for_goal_id",$for_goal->id)->first();
+        $schedules=Schedule::where("for_goal_id",$for_goal->id)->get();
+        $param=compact("setting_schedule","schedules","for_goal");
         return view('ForTheGoals.show',$param);
     }
 

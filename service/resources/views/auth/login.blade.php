@@ -56,6 +56,8 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+                                <br>
+
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -65,6 +67,7 @@
                             </div>
                         </div>
                     </form>
+                    <a href="{{route('login.guest')}}">ゲストログイン</a>
                 </div>
             </div>
         </div>

@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        
-        <form action="{{route('schedule.store')}}" method="post">
+
+        <form action="{{route('setting_schedule.store')}}" method="post">
                 @csrf
 
                 <input type="hidden" name="for_goal_id" value="{{$for_goal_id}}">

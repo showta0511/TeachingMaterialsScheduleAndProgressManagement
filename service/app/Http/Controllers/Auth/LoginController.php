@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    public function guest_login()
+    {
+        $email = 'guest@guest.com';
+        $password = 'guest_pass';
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            // 認証に成功した
+            return redirect(route("goal.index"));
+        }
+        return "back()";
     }
 }

@@ -42,7 +42,7 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- style CSS -->
-    <link rel="stylesheet" href="{{ asset('css/add.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/add.css') }}"> -->
 
 
     <!-- Bootstrap CSS -->
