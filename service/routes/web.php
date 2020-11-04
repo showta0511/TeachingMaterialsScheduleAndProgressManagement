@@ -16,7 +16,12 @@ Route::get('/', function () {
     return view('description');
 })->name('description');
 
-
+//routeを以下のように変更
+//profile           https://サービスネーム/profile.jp
+//goal              https://サービスネーム/goal.jp
+//for_the_goal      https://サービスネーム/goal/1.jp
+//setting_schedule  https://サービスネーム/goal/1/set_schedule.jp
+//schedule          https://サービスネーム/goal/1/schedule.jp
 
 //GoalControllerをURI、ルート名でグループ化
 Route::group(['middleware' => ['auth'],'prefix' => 'goal', 'as' => 'goal.'], function () {

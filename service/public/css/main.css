@@ -1,0 +1,245 @@
+@media (max-width: 991px) and (min-width: 768px) .visible-sm {
+    display: block !important;
+}
+
+.visible-xs-min, .visible-xs, .visible-sm, .visible-md, .visible-lg {
+    display: none !important;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#smartbanner {
+    position: relative;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    font-family: "AvenirNext", "Lato", "Hirago KakuGothic ProN", Meiryo, sans-serif;
+    box-shadow: none;
+    background: rgba(207, 207, 207, 0.2);
+    border-bottom: 1px solid #cfcfcf;
+    z-index: 9998;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    -webkit-text-size-adjust: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+user agent stylesheet header {
+    display: block;
+}
+
+body {
+    font-size: 0.875rem;
+}
+
+html {
+    font: 100%/1.5 "Lato", "Hiragino Maru Gothic Pro", "Meiryo UI", Meiryo, "MS PGothic", sans-serif;
+    color: #5876a3;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.7142857143;
+}
+
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 200000;
+    width: 100%;
+    height: 58px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(160, 166, 179, 0.3);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.sb-slide, #sb-site, .sb-site-container, .sb-slidebar {
+    -webkit-transform: translate(0px);
+    -moz-transform: translate(0px);
+    -o-transform: translate(0px);
+    transform: translate(0px);
+    -webkit-transition: -webkit-transform 400ms ease;
+    -moz-transition: -moz-transform 400ms ease;
+    -o-transition: -o-transform 400ms ease;
+    transition: transform 400ms ease;
+    -webkit-transition-property: -webkit-transform, left, right;
+    -webkit-backface-visibility: hidden;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+::selection {
+    color: #16325c;
+    background: #8be0e6;
+}
+
+.header-navs__left>a, .header-navs__right>a, .header-navs {
+    display: block;
+    margin: 0 15px 0 0;
+    color: #2b546a;
+    transition: all .2s;
+}
+
+.header-navs__left>* {
+    float: left
+}
+
+.header-navs__right>* {
+    float: right;
+}
+
+.header-div {
+    width: 180;
+    height: 58;
+}
+
+.dropdown-toggle {
+    color: #2b546a;
+}
+
+a {
+    color: #0070d2;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+a {
+    background-color: transparent;
+}
+
+a:hover {
+    box-shadow: inset 0 -3.5px 0 0 #30c8d6;
+    color: #1c3746;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+user agent stylesheet a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.header-navs {
+    line-height: 58px;
+    height: 100%;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 200000;
+    width: 100%;
+    height: 58px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(160, 166, 179, 0.3);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+::selection {
+    color: #16325c;
+    background: #8be0e6;
+}
+
+.header-navs__left {
+    float: left;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+user agent stylesheet nav {
+    display: block;
+}
+
+.header-navs {
+    line-height: 58px;
+    height: 100%;
+}
+
+.header-navs_logo {
+    width: 180px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: auto;
+    letter-spacing: 0.1em;
+    color: #fff;
+}
+
+.header-navs_logo:hover {
+    color: #fff;
+    box-shadow: inset 0 -3.5px 0 0 #30c8d6;
+    text-decoration: none;
+}
+
+.dropdown-toggle:hover {
+    box-shadow: none;
+    text-decoration: none;
+}
+
+.item:hover {
+    color: #1c3746;
+    background-color: #30c8d6;
+    box-shadow: none;
+    text-decoration: none;
+    box-shadow: 0;
+}
+
+.item-logout:hover {
+    background-color: #FF5B5B;
+    box-shadow: none;
+    text-decoration: none;
+    box-shadow: 0;
+}
+
+.dropdown-menu {
+    color: fff;
+}
