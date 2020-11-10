@@ -55,13 +55,7 @@ class ScheduleController extends Controller
         $last_page = $form->last_page;
         $daily_learning_page = $form->daily_learning_page;
         $for_goal_id = $form->for_goal_id;
-        //進めるページ数を求める
-        $learning_page = Schedule::learning_page($first_page, $last_page);
-        //教材を進める期間を求める
-        $learning_period=Schedule::learning_period($learning_page, $daily_learning_page);
-        //教材の終了日を求める
-        $end_date_of_learning = Schedule::end_date_of_learning($first_day, $learning_period);
-        //送信//
+
         $param = compact("for_goal_id", "first_page", "last_page", "daily_learning_page", "first_day", "learning_period", "end_date_of_learning", "setting_schedule");
         return view('Schedules.generation_schedule', $param);
     }
