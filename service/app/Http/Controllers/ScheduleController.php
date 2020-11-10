@@ -45,31 +45,25 @@ class ScheduleController extends Controller
     }
 
     //setting_scheduleからスケジュールを表示し編集できるようにする
-    public function generation_schedule($setting_schedule){
+    public function generation_schedule($setting_schedule)
+    {
         // 一日何ページするかで作成する//
-        $form=SettingSchedule::find($setting_schedule)->first();
+        $form = SettingSchedule::find($setting_schedule)->first();
         //使うデータを変数に保存
-        $first_day=$form->first_day;
-        $first_page=$form->first_page;
-        $last_page=$form->last_page;
-        $daily_learning_page=$form->daily_learning_page;
-        $for_goal_id=$form->for_goal_id;
+        $first_day = $form->first_day;
+        $first_page = $form->first_page;
+        $last_page = $form->last_page;
+        $daily_learning_page = $form->daily_learning_page;
+        $for_goal_id = $form->for_goal_id;
         //進めるページ数を求める
-        $learning_page=Schedule::learning_page($first_page,$last_page);
+        $learning_page = Schedule::learning_page($first_page, $last_page);
         //教材を進める期間を求める
-        $learning_period=Schedule::learning_period($learning_page,$daily_learning_page);
-        //教材の終了日を求める   
-        $end_date_of_learning=Schedule::end_date_of_learning($first_day,$learning_period);
+        $learning_period=Schedule::learning_period($learning_page, $daily_learning_page);
+        //教材の終了日を求める
+        $end_date_of_learning = Schedule::end_date_of_learning($first_day, $learning_period);
         //送信//
-        $param=compact("for_goal_id","first_page","last_page","daily_learning_page","first_day","learning_period","end_date_of_learning","setting_schedule");
-        return view('Schedules.generation_schedule',$param);
-
-
-        //日程の差分を求める
-        //開始日からカウント（カレンダーを参考にして30日で月が変わる）
-        //ページ数を毎日するページ数ずつカウント
-        //カウントしたものをeditに出力(formのinputタグに数字を当てはめ編集できるようにする
-        //formが送信されたら保存
+        $param = compact("for_goal_id", "first_page", "last_page", "daily_learning_page", "first_day", "learning_period", "end_date_of_learning", "setting_schedule");
+        return view('Schedules.generation_schedule', $param);
     }
 
     /**
@@ -77,14 +71,35 @@ class ScheduleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
      */
     public function store(Request $request)
     {
-        $schedule=$request->all();
-        $form=new Schedule;
-        unset($schedule["_token"]);
-        $form->fill($schedule)->save();
-        return redirect(route('for_goal.show',['for_goal'=>$form->for_goal_id]));
+        $schedules = $request->all();
+        unset($schedules["_token"]);
+
+        $user_id=$request->input("user_id");
+        $for_goal_id=$request->input("for_goal_id");
+        $setting_schedule_id=$request->input("setting_schedule_id");
+        $date=$request->input("date");
+        $first_page=$request->input("first_page");
+        $last_page=$request->input("last_page");
+
+        //array_mapでcallbackをnullにして一つにしたい順に配列を設置する
+        //保存したいレコードの配列ができる
+        $values = array_map(null, $user_id, $for_goal_id, $setting_schedule_id,$date,$first_page,$last_page);
+
+        //keyの配列を作る
+        $key = array('user_id', 'for_goal_id', 'setting_schedule_id','date','first_page','last_page');
+
+        //array_combineを使ってvalueのkeyをカラム名に変更する
+        foreach($values as $value){
+            $form=new Schedule;
+            $schedule=array_combine($key,$value);
+            $form->fill($schedule)->save();
+        }
+
+        return redirect(route("for_goal.show",["for_goal"=>$for_goal_id[0]]));
     }
 
     /**

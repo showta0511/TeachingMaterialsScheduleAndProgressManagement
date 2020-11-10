@@ -26,5 +26,6 @@
             <td>{{$schedule_content->last_page}}</td>
         </tbody>
     </table>
+    <a href="{{route('schedule.generation_schedule',['setting_schedule'=>$schedule_content->id])}}">スケージュール編集</a>
 </div>
 @endsection
