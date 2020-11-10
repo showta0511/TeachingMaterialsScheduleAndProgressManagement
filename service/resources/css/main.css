@@ -1,0 +1,115 @@
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+user agent stylesheet
+header {
+  display: block;
+}
+body {
+  font-size: 0.875rem;
+}
+html {
+  font: 100%/1.5 "Lato", "Hiragino Maru Gothic Pro", "Meiryo UI", Meiryo, "MS PGothic", sans-serif;
+  color: #5876a3;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.7142857143;
+}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.header-navs {
+  line-height: 48px;
+  height: 100%;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 200000;
+  width: 100%;
+  height: 48px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(160,166,179,0.3);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 200000;
+  width: 100%;
+  height: 48px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(160,166,179,0.3);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.header-navs__left>a, .header-navs {
+  display: block;
+  margin: 0 15px;
+  /* color: #2b546a; */
+  color: red;
+  transition: all .2s;
+}
+.header-navs__left>*, .header-navs__right>* {
+  float: left;
+}
+
+.header-navs {
+  line-height: 48px;
+  height: 100%;
+}
+
+.header-navs__left {
+  float: left;
+  padding-left: 0px;
+}
+
+
+
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+user agent stylesheet
+nav {
+  display: block;
+}
+
+.header-navs__logo>* {
+  transition: all 0.2s ease;
+  float: left;
+  padding: 0 12px;
+  background-color: #2b546a;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+}
+a {
+
+  color: #1c3746;
+}
+a:hover {
+  box-shadow: inset 0 -3px 0 0 #30c8d6;
+  color: #1c3746;
+}
