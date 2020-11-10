@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -45,78 +45,78 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
 </head>
-<div id="contents">
 
-    <body>
-        <div id="header">
-            <header class="header sb-slide">
-                <div>
-                    <div class="header-navs">
-                        <div style="height: 100%;">
+<body style="background-color: #f9fbfe; margin:0;">
+    <div id="header">
+        <header class="header sb-slide">
+            <div>
+                <div class="header-navs">
+                    <div style="height: 100%;">
 
 
-                            <nav class="header-navs__left">
-                                <div class="header-div mr-5" style="background-color: #2b546a; color: #fff;">
-                                    <a class="header-navs_logo pl-1" href="{{ route('goal.index') }}">
-                                        学習スケジュールと理想追求
-                                    </a>
+                        <nav class="header-navs__left">
+                            <div class="header-div" style="background-color: #2b546a; color: #fff; width: 55px;">
+                                <a class="header-navs_logo" href="{{ route('goal.index') }}" style="font-size: 0.82rem; width: 55px;">
+                                    <img style="width: 52px; height: 52px;" class="header-logo" src="/TeachingMaterialsScheduleAndProgressManagement/service/resources/images/ヘッダーロゴ.png" alt="">
+                                </a>
 
-                                </div>
-                                <a href="{{ route('goal.index') }}" style="text-decoration: none;" class="" target="_blank">ホーム</a>
-                                <a href="/slides" style="text-decoration: none;" class="" target="_blank">今日の内容</a>
-                                <a href="/rankings?period=day" style="text-decoration: none;" class="" target="_self">カレンダー</a>
-                                <a href="{{route('teaching_material.index')}}" style="text-decoration: none;" class="" target="_self">教材一覧</a>
-                            </nav>
-                            <span>
-                                <div class="header-navs__right">
-                                    <div style="position: relative; color: rgb(43, 84, 106);">
-                                        <div data-radium="true" style="cursor: pointer; transition: background-color 0.2s ease 0s; padding: 0px 15px;">
-                                            <div id="my-menu-trigger" data-radium="true" style="display: flex; align-items: center; margin-bottom: 5px;">
-                                                <div data-radium="true">
-                                                    <ul class="navbar-nav ml-auto">
-                                                        <li class="nav-item dropdown">
-                                                            <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                {{Auth::user()->name}}
+                            </div>
+                            <a href="{{ route('goal.index') }}" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">ホーム</a>
+                            <a href="/slides" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">今日の内容</a>
+                            <a href="/rankings?period=day" style="text-decoration: none; font-size: 0.82rem;" class="" target="_self">カレンダー</a>
+                            <a href="{{route('teaching_material.index')}}" style="text-decoration: none; font-size: 0.82rem; margin:0px;" class="" target="_self">教材一覧</a>
+                        </nav>
+                        <span>
+                            <div class="header-navs__right">
+                                <div style="position: relative; color: rgb(43, 84, 106);">
+                                    <div class="header-drop" data-radium="true" >
+                                        <div id="my-menu-trigger" data-radium="true" style="display: flex; align-items: center; margin-bottom: 5px;">
+                                            <div data-radium="true">
+                                                <ul class="navbar-nav ml-auto">
+                                                    <li class="nav-item dropdown">
+                                                        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 0.82rem;">
+                                                            {{Auth::user()->name}}
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                            <a class="dropdown-item item" href="＃" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
+                                                                プロフィール
                                                             </a>
-                                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                                <a class="dropdown-item item" href="＃" onclick="event.preventDefault();document.getElementById('logout-form').submit();">プロフィール</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item item-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                            <div class="dropdown-divider">
                                                             </div>
-                                                        </li>
-                                                    </ul>
-
-                                                </div>
+                                                            <a class="dropdown-item item-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
+                                                                {{ __('Logout') }}
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
 
                                             </div>
+
                                         </div>
                                     </div>
-
                                 </div>
-                        </div>
-                        </span>
 
+                            </div>
                     </div>
+                    </span>
+
                 </div>
+            </div>
+    </div>
+    </header>
+
+    <div id="app">
+        <div class="pt-5 mt-3">
+            @if(Auth::user())
+            @yield('content')
+            @else
+            ログインしてください
+            <a href="{{route('login')}}">ログイン</a>
+            @endif
         </div>
-        </header>
-
-</div>
-<div id="app">
-    <main class="py-4">
-        <br><br>
-
-
-        @if(Auth::user())
-        @yield('content')
-        @else
-        ログインしてください
-        <a href="{{route('login')}}">ログイン</a>
-        @endif
-    </main>
-</div>
+    </div>
+    </div>
 </body>
-</div>
 
 
 </html>

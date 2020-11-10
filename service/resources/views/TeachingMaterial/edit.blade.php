@@ -39,7 +39,7 @@
                         </span>
                     @endif
                 </div>
-                <input type="submit" class="btn btn-primary">
+                <input type="submit" class="btn edit-btn btn-link">
         </form>
     </div>
 </div>
