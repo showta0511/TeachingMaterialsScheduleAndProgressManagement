@@ -9,7 +9,7 @@ use Symfony\Component\VarDumper\Cloner\Data;
 class Schedule extends Model
 {
     protected $guarded = array("id","created_at","update_at");
-    
+
     //何日間で教材が修理おlようできるかを計算する処理
     public static function period_calculation($due_date,$first_day){
         $period=($due_date - $first_day) / (60 * 60 * 24);
@@ -45,4 +45,5 @@ class Schedule extends Model
     public function SettingSchedule(){
         return $this->belongsTo("App\Models\SettingSchedule");
     }
+
 }

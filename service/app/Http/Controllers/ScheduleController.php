@@ -71,75 +71,35 @@ class ScheduleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
      */
     public function store(Request $request)
     {
-
-
         $schedules = $request->all();
         unset($schedules["_token"]);
-        $form=new Schedule;
-        //$form->fill($schedules)->save();
-        // print_r(array_keys($schedules));
-        // echo "<br>";
-        // print_r(array_values($schedules));
-        // echo "<br>";
 
         $user_id=$request->input("user_id");
-        print_r($user_id);
         $for_goal_id=$request->input("for_goal_id");
-        print_r($for_goal_id);
         $setting_schedule_id=$request->input("setting_schedule_id");
-        print_r($setting_schedule_id);
         $date=$request->input("date");
-        print_r($date);
         $first_page=$request->input("first_page");
-        print_r($first_page);
         $last_page=$request->input("last_page");
-        print_r($last_page);
-        $a = array_map(null, $user_id, $for_goal_id, $setting_schedule_id,$date,$first_page,$last_page);
-        foreach ($a as $row) {
-            $user_id[]=$row[0]; //noが欲しい
-            $for_goal_id[]=$row[1]; //nameが欲しい
-            $setting_schedule_id[]=$row[2]; //todofukenが欲しい
-            $date[]=$row[3];
-            $first_page[]=$row[4];
-            $last_page[]=$row[5];
 
+        //array_mapでcallbackをnullにして一つにしたい順に配列を設置する
+        //保存したいレコードの配列ができる
+        $values = array_map(null, $user_id, $for_goal_id, $setting_schedule_id,$date,$first_page,$last_page);
+
+        //keyの配列を作る
+        $key = array('user_id', 'for_goal_id', 'setting_schedule_id','date','first_page','last_page');
+
+        //array_combineを使ってvalueのkeyをカラム名に変更する
+        foreach($values as $value){
+            $form=new Schedule;
+            $schedule=array_combine($key,$value);
+            $form->fill($schedule)->save();
         }
-        return $a;
 
-
-        //---------------
-        // $form=new Schedule;
-        // unset($schedules["_token"]);
-        // foreach ($schedules as $schedule){
-        //     $form->fill($schedule)->save();
-        //     $for_goal=$schedule->for_goal_id;
-        // }
-
-        //受け取りたい形
-        // $chars={
-        //     ["user_id":"4",
-        //     "for_goal_id":"1",
-        //     "setting_schedule_id":"1",
-        //     "date":"2020-11-01",
-        //     "first_page":12,
-        //     "last_page":22
-        // ],
-        //     ["user_id":"4",
-        // "for_goal_id":"1",
-        // "setting_schedule_id":"1",
-        // "date":"2020-11-02",
-        // "first_page":12,
-        // "last_page":22
-        // ]
-        // };
-        //これをforeachで回してfillでsave
-
-        //---------------
-
-        // return redirect(route('for_goal.show',['for_goal'=>$for_goal]));
+        return redirect(route("for_goal.show",["for_goal"=>$for_goal_id[0]]));
     }
 
     /**
