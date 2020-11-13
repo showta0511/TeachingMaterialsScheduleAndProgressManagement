@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TeachingMaterial;
 use App\Models\SettingSchedule;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SettingScheduleRequest;
 
@@ -39,8 +40,10 @@ class SettingScheduleController extends Controller
      */
     public function show($schedule)
     {
-        $schedule_content=SettingSchedule::find($schedule)->first();
-        return view("SettingSchedules.show",["schedule_content"=>$schedule_content]);
+        $setting_schedule=SettingSchedule::find($schedule)->first();
+        $schedule=Schedule::where("setting_schedule_id",$setting_schedule->id)->first();
+        $param=compact("setting_schedule","schedule");
+        return view("SettingSchedules.show",$param);
     }
 
     /**
@@ -49,10 +52,11 @@ class SettingScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($schedule)
+    public function edit($setting_schedule)
     {
-        $schedule_content=SettingSchedule::find($schedule)->first();
-        return view("SettingSchedules.edit",["schedule_content"=>$schedule_content]);
+        $schedule_content=SettingSchedule::find($setting_schedule)->first();
+        $param=compact("schedule_content","setting_schedule");
+        return view("SettingSchedules.edit",$param);
     }
 
     /**
@@ -68,7 +72,7 @@ class SettingScheduleController extends Controller
         $form=SettingSchedule::find($schedule)->first();
         unset($schedule_content["_token"]);
         $form->fill($schedule_content)->save();
-        return redirect(route('setting_schedule.show',['schedule'=>$schedule]));
+        return redirect(route('setting_schedule.show',['setting_schedule'=>$schedule]));
     }
 
     /**
@@ -79,9 +83,10 @@ class SettingScheduleController extends Controller
      */
     public function destroy($schedule)
     {
-        $schedule_content=SettingSchedule::find($schedule)->first();
-        $for_goal_id=$schedule_content->for_goal_id;
+        $schedule_content=SettingSchedule::find($schedule);
         $schedule_content->delete();
+        $for_goal_id=$schedule_content->for_goal_id;
         return redirect(route('for_goal.show',['for_goal'=>$for_goal_id]));
     }
+
 }

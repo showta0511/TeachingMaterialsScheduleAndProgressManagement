@@ -11,10 +11,8 @@
         @endif
         <h1>スケジュール</h1>
         <div class="container">
-            <form action="{{route('schedule.store')}}" method="post">
+            <form action="{{route('schedule.generation_schedule_save',['setting_schedule'=>$setting_schedule])}}" method="post">
                 @csrf
-                <!-- 繰り返し回数分繰り返すend -->012345
-
                 @for ($i=0; $i<=$learning_period; $i++) <input type="hidden" name="user_id[]" value="{{Auth::id()}}">
                     <input type="hidden" name="for_goal_id[]" value="{{$for_goal_id}}">
                     <input type="hidden" name="setting_schedule_id[]" value="{{$setting_schedule}}">
