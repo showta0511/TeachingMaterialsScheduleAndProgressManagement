@@ -12,7 +12,7 @@
             @endforeach
         @endif
 
-        <form action="{{route('schedule.update',['schedule'=>$schedule_content->id])}}" method="post">
+        <form action="{{route('setting_schedule.update',['setting_schedule'=>$setting_schedule])}}" method="post">
                 @csrf
                 @method("put")
                 <div class="form-group">

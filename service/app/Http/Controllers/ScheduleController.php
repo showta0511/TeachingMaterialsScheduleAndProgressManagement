@@ -21,30 +21,7 @@ class ScheduleController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //test connection
-        //form書く！
-
-
-        // 毎日するページ数を使って作成
-        // formからスケジュールの設定内容を取得
-        // 保存
-
-        //別table準備(設定内容、for_the_goalに紐ずく)
-        //日程の差分を求める
-        //開始日からカウント（カレンダーを参考にして30日で月が変わる）
-        //ページ数を毎日するページ数ずつカウント
-        //カウントしたものをeditに出力(formのinputタグに数字を当てはめ編集できるようにする
-        //formが送信されたら保存
-    }
-
-    //setting_scheduleからスケジュールを表示し編集できるようにする
+    //setting_scheduleからスケジュールの保存内容を編集してから、作成できるようにする
     public function generation_schedule($setting_schedule)
     {
         // 一日何ページするかで作成する//
@@ -58,7 +35,7 @@ class ScheduleController extends Controller
         //進めるページ数を求める
         $learning_page = Schedule::learning_page($first_page, $last_page);
         //教材を進める期間を求める
-        $learning_period=Schedule::learning_period($learning_page, $daily_learning_page);
+        $learning_period = Schedule::learning_period($learning_page, $daily_learning_page);
         //教材の終了日を求める
         $end_date_of_learning = Schedule::end_date_of_learning($first_day, $learning_period);
         //送信//
@@ -66,40 +43,43 @@ class ScheduleController extends Controller
         return view('Schedules.generation_schedule', $param);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     *
-     */
-    public function store(Request $request)
+    public function generation_schedule_save(Request $request)
     {
         $schedules = $request->all();
         unset($schedules["_token"]);
 
-        $user_id=$request->input("user_id");
-        $for_goal_id=$request->input("for_goal_id");
-        $setting_schedule_id=$request->input("setting_schedule_id");
-        $date=$request->input("date");
-        $first_page=$request->input("first_page");
-        $last_page=$request->input("last_page");
+        $user_id = $request->input("user_id");
+        $for_goal_id = $request->input("for_goal_id");
+        $setting_schedule_id = $request->input("setting_schedule_id");
+        $date = $request->input("date");
+        $first_page = $request->input("first_page");
+        $last_page = $request->input("last_page");
 
         //array_mapでcallbackをnullにして一つにしたい順に配列を設置する
         //保存したいレコードの配列ができる
-        $values = array_map(null, $user_id, $for_goal_id, $setting_schedule_id,$date,$first_page,$last_page);
+        $values = array_map(null, $user_id, $for_goal_id, $setting_schedule_id, $date, $first_page, $last_page);
 
         //keyの配列を作る
-        $key = array('user_id', 'for_goal_id', 'setting_schedule_id','date','first_page','last_page');
+        $key = array('user_id', 'for_goal_id', 'setting_schedule_id', 'date', 'first_page', 'last_page');
 
         //array_combineを使ってvalueのkeyをカラム名に変更する
-        foreach($values as $value){
-            $form=new Schedule;
-            $schedule=array_combine($key,$value);
+        foreach ($values as $value) {
+            $form = new Schedule;
+            $schedule = array_combine($key, $value);
             $form->fill($schedule)->save();
         }
 
-        return redirect(route("for_goal.show",["for_goal"=>$for_goal_id[0]]));
+        return redirect(route("for_goal.show", ["for_goal" => $for_goal_id[0]]));
+    }
+
+
+    public function store(Request $request)
+    {
+        $schedule = $request->all();
+        $form = new Schedule;
+        unset($schedule["_token"]);
+        $form->fill($schedule)->save();
+        return redirect(route('for_goal.show', ["for_goal" => $form->for_goal_id]));
     }
 
     /**
@@ -110,7 +90,6 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -119,9 +98,12 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($schedule)
     {
-        //
+        $schedules = Schedule::where("setting_schedule_id", $schedule)->get();
+
+        $param = compact("schedules");
+        return view("Schedules.edit", $param);
     }
 
     /**
@@ -131,9 +113,14 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $schedule)
     {
-        //
+        $request = $request->all();
+        unset($request["_token"]);
+        $form = Schedule::find($schedule);
+        $form->fill($request)->save();
+        print_r($form->for_goal_id);
+        return redirect(route("for_goal.show", ["for_goal" => $form->for_goal_id]));
     }
 
     /**
@@ -142,8 +129,20 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($schedule)
     {
-        //
+        $schedule = Schedule::find($schedule);
+        $schedule->delete();
+        return redirect(route("for_goal.show", ["for_goal" => $schedule->for_goal_id]));
+    }
+
+    public function all_destroy($setting_schedule)
+    {
+        $schedules = Schedule::where('setting_schedule_id',$setting_schedule)->get();
+        foreach ($schedules as $schedule){
+            $for_goal_id=$schedule->for_goal_id;
+            $schedule->delete();
+        }
+        return redirect(route("for_goal.show", ["for_goal" => $for_goal_id]));
     }
 }

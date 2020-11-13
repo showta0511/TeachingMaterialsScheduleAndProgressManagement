@@ -54,7 +54,8 @@ class TeachingMaterialController extends Controller
     public function show(TeachingMaterial $teaching_material)
     {
         $teaching_material=TeachingMaterial::find($teaching_material)->first();
-        return view("TeachingMaterial.show",["teaching_material"=>$teaching_material]);
+        $param=compact("teaching_material");
+        return view("TeachingMaterial.show",$param);
     }
 
     /**

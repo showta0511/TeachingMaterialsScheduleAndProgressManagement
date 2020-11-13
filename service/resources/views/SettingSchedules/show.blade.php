@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <a href="{{route('setting_schedule.edit',['setting_schedule'=>$schedule_content->id])}}">編集</a>
-    <form action="{{route('setting_schedule.destroy',['setting_schedule'=>$schedule_content->id])}}" method="post">
+    <a href="{{route('setting_schedule.edit',['setting_schedule'=>$setting_schedule->id])}}">編集</a>
+    <form action="{{route('setting_schedule.destroy',['setting_schedule'=>$setting_schedule->id])}}" method="post">
         @csrf
         <input type="hidden" name="_method" value="delete">
         <input type="submit" value="設定を削除">
@@ -18,14 +18,20 @@
             <th>終了ページ</th>
         </thead>
         <tbody>
-            <td>{{$schedule_content->teaching_material->title}}</td>
-            <td>{{$schedule_content->to_learn}}</td>
-            <td>{{$schedule_content->first_day}}</td>
-            <td>{{$schedule_content->last_day}}</td>
-            <td>{{$schedule_content->first_page}}</td>
-            <td>{{$schedule_content->last_page}}</td>
+            <td>{{$setting_schedule->teaching_material->title}}</td>
+            <td>{{$setting_schedule->to_learn}}</td>
+            <td>{{$setting_schedule->first_day}}</td>
+            <td>{{$setting_schedule->last_day}}</td>
+            <td>{{$setting_schedule->first_page}}</td>
+            <td>{{$setting_schedule->last_page}}</td>
         </tbody>
     </table>
-    <a href="{{route('schedule.generation_schedule',['setting_schedule'=>$schedule_content->id])}}">スケージュール編集</a>
+    @if(!empty($schedule))
+        <a href="{{route('schedule.edit',['schedule'=>$schedule->setting_schedule_id])}}">スケージュール編集</a>
+    @endif
+
+    @if(empty($schedule))
+        <a href="{{route('schedule.generation_schedule',['setting_schedule'=>$setting_schedule->id])}}">スケジュール作成</a>
+    @endif
 </div>
 @endsection

@@ -7,6 +7,7 @@ use App\Http\Controllers\TeachingMaterialController;
 use App\Http\Controllers\SettingScheduleController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Console\Scheduling\Schedule;
 
 Auth::routes();
 
@@ -61,5 +62,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource("schedule",ScheduleController::class);
 
     Route::get("schedule/generation/{setting_schedule}",[ScheduleController::class,"generation_schedule"])->name('schedule.generation_schedule');
+
+    Route::post("schedule/generation/{setting_schedule}",[ScheduleController::class,"generation_schedule_save"])->name('schedule.generation_schedule_save');
+
+    Route::delete("schedule/{setting_schedule}/all_destroy",[ScheduleController::class,"all_destroy"])->name('schedule.all_destroy');
 
 });
