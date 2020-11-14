@@ -23,7 +23,7 @@ class ForTheGoalController extends Controller
     public function show($for_goal){
         $for_goal=ForTheGoal::find($for_goal);
         $setting_schedule=SettingSchedule::where("for_goal_id",$for_goal->id)->first();
-        $schedules=Schedule::where("for_goal_id",$for_goal->id)->get();
+        $schedules=Schedule::where("for_goal_id",$for_goal->id)->orderBy("date","asc")->simplePaginate(14);
         $param=compact("setting_schedule","schedules","for_goal");
         return view('ForTheGoals.show',$param);
     }
