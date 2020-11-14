@@ -24,17 +24,19 @@ class GoalRequest extends FormRequest
     public function rules()
     {
         return [
-            "title"=>"required",'max:100',
-            "motive"=>"required",'max:200',
+            "title"=>["string","required",'max:100'],
+            "motive"=>["string","required",'max:200'],
         ];
     }
 
     public function messages()
     {
         return [
+            "title.string"=>"文字列型で入力してください",
+            "motive.string"=>"文字列型で入力してください",
             "title.required"=>"理想を入力してください",
-            "title.max:100"=>"100文字以内で入力してください",
-            "motive.max:200"=>"200文字以内で入力してください",
+            "title.max"=>"100文字以内で入力してください",
+            "motive.max"=>"200文字以内で入力してください",
             "motive.required"=>"動機を入力してください"
         ];
     }
