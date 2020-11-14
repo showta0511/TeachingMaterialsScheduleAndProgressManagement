@@ -43,11 +43,10 @@ class ScheduleController extends Controller
         return view('Schedules.generation_schedule', $param);
     }
 
-    public function generation_schedule_save(Request $request)
+    public function generation_schedule_save(ScheduleRequest $request)
     {
         $schedules = $request->all();
         unset($schedules["_token"]);
-
         $user_id = $request->input("user_id");
         $for_goal_id = $request->input("for_goal_id");
         $setting_schedule_id = $request->input("setting_schedule_id");
@@ -73,7 +72,7 @@ class ScheduleController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
         $schedule = $request->all();
         $form = new Schedule;
@@ -113,7 +112,7 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $schedule)
+    public function update(ScheduleRequest $request, $schedule)
     {
         $request = $request->all();
         unset($request["_token"]);

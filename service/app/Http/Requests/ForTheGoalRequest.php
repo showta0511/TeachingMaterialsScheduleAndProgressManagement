@@ -24,7 +24,7 @@ class ForTheGoalRequest extends FormRequest
     public function rules()
     {
         return [
-            "title"=>"required",'max:100',
+            "title"=>["required","string","max:100"],
         ];
     }
 
@@ -32,7 +32,8 @@ class ForTheGoalRequest extends FormRequest
     {
         return [
             "title.required"=>"理想に必要な要素を入力してください",
-            "title.max:100"=>"100文字以内で入力してください",
+            "title.string"=>"文字列型で入力してください",
+            "title.max"=>"100文字以内で入力してください",
         ];
     }
-}
+    }
