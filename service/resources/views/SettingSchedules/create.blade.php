@@ -4,9 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
 
-        <form action="{{route('setting_schedule.generation_schedule')}}" method="post">
+        <form action="{{route('setting_schedule.store')}}" method="post">
             @csrf
             <input type="hidden" name="for_goal_id" value="{{$for_goal_id}}">
+            <input type="hidden" name="user_id" value="{{Auth::id()}}">
             <div class="form-group">
                 <label for="teaching_material_id">教材</label>
                 <select name="teaching_material_id" id="teaching_material_id" class=" is-invalid">

@@ -81,11 +81,12 @@ class SettingScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($schedule)
+    public function destroy($setting_schedule_id)
     {
-        $schedule_content=SettingSchedule::find($schedule);
-        $schedule_content->delete();
-        $for_goal_id=$schedule_content->for_goal_id;
+        Schedule::where("setting_schedule_id",$setting_schedule_id)->delete();
+        $setting_schedule=SettingSchedule::find($setting_schedule_id);
+        $setting_schedule->delete();
+        $for_goal_id=$setting_schedule->for_goal_id;
         return redirect(route('for_goal.show',['for_goal'=>$for_goal_id]));
     }
 

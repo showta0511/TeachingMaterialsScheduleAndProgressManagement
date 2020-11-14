@@ -16,4 +16,8 @@ class TeachingMaterial extends Model
     public function for_the_goal(){
         return $this->hasMany("App\Models\ForTheGoal");
     }
+
+    public function setting_schedule(){
+        return $this->hasMany("App\Models\SettingSchedule");
+    }
 }
