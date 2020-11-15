@@ -5,15 +5,14 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-
-                <strong>できるようにならないといけない事</strong>
+                <strong>なりたい姿</strong>
             </div>
             <div class="card-body ">
 
                 <h1>{{$goal->title}}</h1>
                 <p class="card-text">動機：{{$goal->motive}}</p>
             </div>
-                <ul class="li-link" style="list-style: none; padding-left:420px;">
+                <ul class="li-link">
                     <li style="list-style: none;">
                         <a href="{{route('goal.edit',['edit'=>$goal->id])}}" class="btn edit-btn btn-link">編集</a>
                     </li>
