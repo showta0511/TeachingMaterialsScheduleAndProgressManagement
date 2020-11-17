@@ -43,7 +43,7 @@ class ScheduleController extends Controller
         return view('Schedules.generation_schedule', $param);
     }
 
-    public function generation_schedule_save(ScheduleRequest $request)
+    public function generation_schedule_save(Request $request)
     {
         $schedules = $request->all();
         unset($schedules["_token"]);
@@ -137,9 +137,9 @@ class ScheduleController extends Controller
 
     public function all_destroy($setting_schedule)
     {
-        $schedules = Schedule::where('setting_schedule_id',$setting_schedule)->get();
-        foreach ($schedules as $schedule){
-            $for_goal_id=$schedule->for_goal_id;
+        $schedules = Schedule::where('setting_schedule_id', $setting_schedule)->get();
+        foreach ($schedules as $schedule) {
+            $for_goal_id = $schedule->for_goal_id;
             $schedule->delete();
         }
         return redirect(route("for_goal.show", ["for_goal" => $for_goal_id]));

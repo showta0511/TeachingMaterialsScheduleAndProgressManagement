@@ -14,7 +14,6 @@
             <form action="{{route('schedule.generation_schedule_save',['setting_schedule'=>$setting_schedule])}}" method="post">
                 @csrf
                 @for ($i=0; $i<=$learning_period; $i++)
-                    {{$i}}
                     <input type="hidden" name="user_id[]" value="{{Auth::id()}}">
                     <input type="hidden" name="for_goal_id[]" value="{{$for_goal_id}}">
                     <input type="hidden" name="setting_schedule_id[]" value="{{$setting_schedule}}">
