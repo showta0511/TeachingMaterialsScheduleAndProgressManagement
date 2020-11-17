@@ -25,7 +25,7 @@ class ScheduleController extends Controller
     public function generation_schedule($setting_schedule)
     {
         // 一日何ページするかで作成する//
-        $form = SettingSchedule::find($setting_schedule)->first();
+        $form = SettingSchedule::find($setting_schedule);
         //使うデータを変数に保存
         $first_day = $form->first_day;
         $first_page = $form->first_page;

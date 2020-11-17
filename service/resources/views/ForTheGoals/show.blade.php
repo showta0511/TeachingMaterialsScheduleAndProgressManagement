@@ -26,7 +26,6 @@
                         <th><a class="btn btn-primary title-btn" href="{{route('setting_schedule.create',['for_goal_id'=>$for_goal->id])}}">スケジュールを作る</a></th>
                         @else
                         <th><a style="border-color: none; padding:3;" class="btn btn-primary title-btn" href="{{route('setting_schedule.show',['setting_schedule'=>$setting_schedule->id])}}">設定内容</a></th>
-
                         @endif
                     </tr>
                     <tr>
