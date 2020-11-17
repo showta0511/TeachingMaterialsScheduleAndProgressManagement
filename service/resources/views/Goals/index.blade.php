@@ -4,10 +4,13 @@
 
 <div class="row">
     @if(empty($goal))
-    <div class="col-lg-8 col-lg-offset-2 centered">
-        <h1>ようこそ！</h1>
-        <p>さっそく理想の入力しよう！</p>
-        <a href="{{route('goal.create')}}">作成する</a>
+    <div class="container content-card mt-5 p-5">
+        <div style="margin:0 auto; width:500px;">
+            <h1>ようこそ！</h1>
+            <h3>自分の目指す姿を入力しよう</h3>
+            <br>
+            <a href="{{route('goal.create')}}" class="btn edit-btn btn-link" style="width: 120px;">作成する</a>
+        </div>
     </div>
 </div>
 @endif
@@ -62,9 +65,15 @@
                             <form action="{{route('for_goal.store')}}" method="post">
                                 @csrf
                                 <input type="hidden" name="goal_id" value="{{$goal->id}}">
-                                <input name="title" type="text" value="{{old('title')}}">
-                                <input type="submit" value="作成する">
+                                <input id="title" type="text" style="box-shadow: none !important; width:380px;" class="form-control @error('title') is-invalid @enderror" name="title" value="{{old('title')}}" required autocomplete="title" autofocus>
+                                @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <input type="submit" class="btn edit-btn btn-link mt-3 media-btn" style="width:100px;" value="作成する">
                             </form>
+
                         </div>
                     </div>
                 </div>

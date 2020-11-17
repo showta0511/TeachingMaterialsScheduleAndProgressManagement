@@ -25,7 +25,7 @@ class ScheduleController extends Controller
     public function generation_schedule($setting_schedule)
     {
         // 一日何ページするかで作成する//
-        $form = SettingSchedule::find($setting_schedule)->first();
+        $form = SettingSchedule::find($setting_schedule);
         //使うデータを変数に保存
         $first_day = $form->first_day;
         $first_page = $form->first_page;
@@ -43,7 +43,7 @@ class ScheduleController extends Controller
         return view('Schedules.generation_schedule', $param);
     }
 
-    public function generation_schedule_save(ScheduleRequest $request)
+    public function generation_schedule_save(Request $request)
     {
         $schedules = $request->all();
         unset($schedules["_token"]);
@@ -137,9 +137,9 @@ class ScheduleController extends Controller
 
     public function all_destroy($setting_schedule)
     {
-        $schedules = Schedule::where('setting_schedule_id',$setting_schedule)->get();
-        foreach ($schedules as $schedule){
-            $for_goal_id=$schedule->for_goal_id;
+        $schedules = Schedule::where('setting_schedule_id', $setting_schedule)->get();
+        foreach ($schedules as $schedule) {
+            $for_goal_id = $schedule->for_goal_id;
             $schedule->delete();
         }
         return redirect(route("for_goal.show", ["for_goal" => $for_goal_id]));

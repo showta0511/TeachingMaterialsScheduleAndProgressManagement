@@ -17,15 +17,12 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="{{ asset('https://fonts.googleapis.com/css?family=Nunito')}}" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- animate CSS -->
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
@@ -40,69 +37,93 @@
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
-    <!-- style CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{route('description')}}">
-                    {{ config('app.name', '理想追求と教材スケジュール管理') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body style="background-color: #f9fbfe; margin:0;">
+    <div id="header">
+        <header class="header sb-slide">
+            <div>
+                <div class="header-navs">
+                    <div style="height: 100%;">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
-                        @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                        <nav class="header-navs__left">
+                            <div class="header-div" style="background-color: #2b546a; color: #fff; width: 55px;">
+                                <a class="header-navs_logo" href="{{ route('goal.index') }}" style="font-size: 0.82rem; width: 55px;">
+                                    <img style="width: 52px; height: 52px;" class="header-logo" src="/TeachingMaterialsScheduleAndProgressManagement/service/resources/images/ヘッダーロゴ.png" alt="">
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
                             </div>
-                        </li>
-                        @endguest
-                    </ul>
+                            @if(Auth::user())
+                            <a href="{{ route('goal.index') }}" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">ホーム</a>
+                            <a href="/slides" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">今日の内容</a>
+                            <a href="/rankings?period=day" style="text-decoration: none; font-size: 0.82rem;" class="" target="_self">カレンダー</a>
+                            <a href="{{route('teaching_material.index')}}" style="text-decoration: none; font-size: 0.82rem; margin:0px;" class="" target="_self">教材一覧</a>
+                            @endif
+                        </nav>
+                        <span>
+                            <div class="header-navs__right">
+                                <div style="position: relative; color: rgb(43, 84, 106);">
+                                    <div class="header-drop" data-radium="true">
+                                        <div id="my-menu-trigger" data-radium="true" style="display: flex; align-items: center; margin-bottom: 5px;">
+                                            <div data-radium="true">
+                                                <ul class="navbar-nav ml-auto">
+                                                    <li class="nav-item dropdown">
+                                                        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 0.82rem;">
+                                                            @if(Auth::user())
+                                                            {{Auth::user()->name}}
+                                                            @else
+                                                            ログインしていません
+                                                            @endif
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                            @if(Auth::user())
+                                                            <a class="dropdown-item item" href="＃" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
+                                                                プロフィール
+                                                            </a>
+                                                            <div class="dropdown-divider">
+                                                            </div>
+                                                            <a class="dropdown-item item-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
+                                                                {{ __('ログアウト') }}
+                                                            </a>
+                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                                @csrf
+                                                            </form>
+                                                            @endif
+                                                            <a class="dropdown-item item" href="{{ route('login') }}"  style="font-size: 0.82rem;">
+                                                                ログイン
+                                                            </a>
+                                                            <a class="dropdown-item item" href="{{ route('register') }}"  style="font-size: 0.82rem;">
+                                                                新規会員登録
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                    </span>
+
                 </div>
             </div>
-        </nav>
+    </div>
+    </header>
 
-        <main class="py-4">
+    <div id="app">
+        <div class="pt-5 mt-5">
             @yield('content')
-        </main>
+            </main>
+        </div>
+    </div>
     </div>
 </body>
 

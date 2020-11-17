@@ -40,7 +40,7 @@ class SettingScheduleController extends Controller
      */
     public function show($schedule)
     {
-        $setting_schedule=SettingSchedule::find($schedule)->first();
+        $setting_schedule=SettingSchedule::find($schedule);
         $schedule=Schedule::where("setting_schedule_id",$setting_schedule->id)->first();
         $param=compact("setting_schedule","schedule");
         return view("SettingSchedules.show",$param);
@@ -54,7 +54,7 @@ class SettingScheduleController extends Controller
      */
     public function edit($setting_schedule)
     {
-        $schedule_content=SettingSchedule::find($setting_schedule)->first();
+        $schedule_content=SettingSchedule::find($setting_schedule);
         $param=compact("schedule_content","setting_schedule");
         return view("SettingSchedules.edit",$param);
     }
@@ -69,7 +69,7 @@ class SettingScheduleController extends Controller
     public function update(SettingScheduleRequest $request, $schedule)
     {
         $schedule_content=$request->all();
-        $form=SettingSchedule::find($schedule)->first();
+        $form=SettingSchedule::find($schedule);
         unset($schedule_content["_token"]);
         $form->fill($schedule_content)->save();
         return redirect(route('setting_schedule.show',['setting_schedule'=>$schedule]));

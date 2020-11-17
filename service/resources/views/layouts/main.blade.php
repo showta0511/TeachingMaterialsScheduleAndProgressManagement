@@ -8,6 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
     <title>{{ config('app.name', '理想追求と教材スケジュール管理') }}</title>
 
     <!-- Scripts -->
@@ -37,12 +39,9 @@
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
-    <!-- style CSS -->
-    <!-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> -->
-    <!-- style CSS -->
-    <!-- <link rel="stylesheet" href="{{ asset('css/add.css') }}"> -->
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
 
 </head>
 
@@ -61,31 +60,49 @@
                                 </a>
 
                             </div>
+                            @if(Auth::user())
                             <a href="{{ route('goal.index') }}" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">ホーム</a>
                             <a href="/slides" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">今日の内容</a>
                             <a href="/rankings?period=day" style="text-decoration: none; font-size: 0.82rem;" class="" target="_self">カレンダー</a>
                             <a href="{{route('teaching_material.index')}}" style="text-decoration: none; font-size: 0.82rem; margin:0px;" class="" target="_self">教材一覧</a>
+                            @endif
                         </nav>
                         <span>
                             <div class="header-navs__right">
                                 <div style="position: relative; color: rgb(43, 84, 106);">
-                                    <div class="header-drop" data-radium="true" >
+                                    <div class="header-drop" data-radium="true">
                                         <div id="my-menu-trigger" data-radium="true" style="display: flex; align-items: center; margin-bottom: 5px;">
                                             <div data-radium="true">
                                                 <ul class="navbar-nav ml-auto">
                                                     <li class="nav-item dropdown">
                                                         <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 0.82rem;">
+                                                            @if(Auth::user())
                                                             {{Auth::user()->name}}
+                                                            @else
+                                                            ログインしていません
+                                                            @endif
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                            @if(Auth::user())
                                                             <a class="dropdown-item item" href="＃" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
                                                                 プロフィール
                                                             </a>
                                                             <div class="dropdown-divider">
                                                             </div>
                                                             <a class="dropdown-item item-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
-                                                                {{ __('Logout') }}
+                                                                {{ __('ログアウト') }}
                                                             </a>
+                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                                @csrf
+                                                            </form>
+                                                            @else
+                                                            <a class="dropdown-item item" href="{{ route('login') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
+                                                            ログイン
+                                                            </a>
+                                                            <a class="dropdown-item item" href="{{ route('register') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
+                                                                新規会員登録
+                                                            </a>
+                                                            @endif
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -117,6 +134,4 @@
     </div>
     </div>
 </body>
-
-
 </html>
