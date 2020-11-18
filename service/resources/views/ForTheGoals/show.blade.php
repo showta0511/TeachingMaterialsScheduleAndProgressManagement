@@ -39,6 +39,7 @@
                         <td>{{$schedule->date}}</td>
                         <td>{{$schedule->first_page}}</td>
                         <td>{{$schedule->last_page}}</td>
+                        <td>{{$schedule->setting_schedule_id}}</td>
                     </tr>
                     @endforeach
                 </tbody>

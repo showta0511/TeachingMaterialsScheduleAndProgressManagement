@@ -75,10 +75,11 @@ class ScheduleController extends Controller
     public function store(ScheduleRequest $request)
     {
         $schedule = $request->all();
+
         $form = new Schedule;
         unset($schedule["_token"]);
         $form->fill($schedule)->save();
-        return redirect(route('for_goal.show', ["for_goal" => $form->for_goal_id]));
+        return redirect(route("schedule.edit", ["schedule" =>$form->setting_schedule_id ]));
     }
 
     /**
@@ -118,8 +119,7 @@ class ScheduleController extends Controller
         unset($request["_token"]);
         $form = Schedule::find($schedule);
         $form->fill($request)->save();
-        print_r($form->for_goal_id);
-        return redirect(route("for_goal.show", ["for_goal" => $form->for_goal_id]));
+        return redirect(route("schedule.edit", ["schedule" => $form->setting_schedule_id]));
     }
 
     /**

@@ -33,5 +33,6 @@
     @if(empty($schedule))
         <a href="{{route('schedule.generation_schedule',['setting_schedule'=>$setting_schedule->id])}}">スケジュール作成</a>
     @endif
+    <a href="{{route('for_goal.show',['for_goal'=>$setting_schedule->for_goal_id])}}">戻る</a>
 </div>
 @endsection

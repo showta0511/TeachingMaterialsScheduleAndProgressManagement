@@ -22,11 +22,11 @@
                     </div>
 
                     <div class="">
-                        <label for="motive">内容</label>
+                        <label for="content">内容</label>
                     </div>
                     <div class="form-group" style="margin:0 0 30px 0;">
-                        <textarea type="text" id="motive" style="box-shadow: none !important; width:380px; margin: 0;" class="form-control @error('motive') is-invalid @enderror" name="motive" value="{{ old('motive') }}" required autocomplete="motive" autofocus name="motive">{{old('motive')}}</textarea>
-                        @error('motive')
+                        <textarea type="text" id="content" style="box-shadow: none !important; width:380px; margin: 0;" class="form-control @error('content') is-invalid @enderror" name="content" value="{{ old('content') }}" required autocomplete="content" autofocus name="content">{{old('content')}}</textarea>
+                        @error('content')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
