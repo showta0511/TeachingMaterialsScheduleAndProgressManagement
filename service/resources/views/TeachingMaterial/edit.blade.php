@@ -22,9 +22,9 @@
                     <label for="content">内容</label>
                     <textarea class="form-control is-invalid" id="content" rows="3" name="content" >{{$form->content}}</textarea>
 
-                    @if($errors->has('motive'))
+                    @if($errors->has('content'))
                         <span class="invalid-feedback">
-                        {{$errors->first('motive')}}
+                        {{$errors->first('content')}}
                         </span>
                     @endif
                 </div>
@@ -33,9 +33,14 @@
                     <input class="form-control is-invalid" id="page" rows="3" name="first_page" value="{{$form->first_page}}">〜
                     <input class="form-control is-invalid" id="page" rows="3" name="last_page" value="{{$form->last_page}}">
 
-                    @if($errors->has('motive'))
+                    @if($errors->has('first_page'))
                         <span class="invalid-feedback">
-                        {{$errors->first('motive')}}
+                        {{$errors->first('first_page')}}
+                        </span>
+                    @endif
+                    @if($errors->has('last_page'))
+                        <span class="invalid-feedback">
+                        {{$errors->first('last_page')}}
                         </span>
                     @endif
                 </div>

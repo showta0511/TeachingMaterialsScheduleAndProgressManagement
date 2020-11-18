@@ -54,8 +54,9 @@ class SettingScheduleController extends Controller
      */
     public function edit($setting_schedule)
     {
-        $schedule_content=SettingSchedule::find($setting_schedule);
-        $param=compact("schedule_content","setting_schedule");
+        $schedule_content=SettingSchedule::find($setting_schedule)->first();
+        $teaching_materials=TeachingMaterial::where("user_id",Auth::id())->get();
+        $param=compact("schedule_content","setting_schedule","teaching_materials");
         return view("SettingSchedules.edit",$param);
     }
 
