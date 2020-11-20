@@ -62,8 +62,8 @@
                             </div>
                             @if(Auth::user())
                             <a href="{{ route('goal.index') }}" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">ホーム</a>
-                            <a href="/slides" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">今日の内容</a>
-                            <a href="/rankings?period=day" style="text-decoration: none; font-size: 0.82rem;" class="" target="_self">カレンダー</a>
+                            <!-- <a href="#" style="text-decoration: none; font-size: 0.82rem;" class="" target="_blank">今日の内容</a>
+                            <a href="#" style="text-decoration: none; font-size: 0.82rem;" class="" target="_self">カレンダー</a> -->
                             <a href="{{route('teaching_material.index')}}" style="text-decoration: none; font-size: 0.82rem; margin:0px;" class="" target="_self">教材一覧</a>
                             @endif
                         </nav>
@@ -84,9 +84,9 @@
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                             @if(Auth::user())
-                                                            <a class="dropdown-item item" href="＃" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
+                                                            <!-- <a class="dropdown-item item" href="＃" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
                                                                 プロフィール
-                                                            </a>
+                                                            </a> -->
                                                             <div class="dropdown-divider">
                                                             </div>
                                                             <a class="dropdown-item item-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="font-size: 0.82rem;">
