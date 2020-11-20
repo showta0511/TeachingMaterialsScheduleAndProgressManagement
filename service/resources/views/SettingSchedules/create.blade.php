@@ -3,95 +3,102 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-
-        <form action="{{route('setting_schedule.store')}}" method="post">
-            @csrf
-            <input type="hidden" name="for_goal_id" value="{{$for_goal_id}}">
-            <input type="hidden" name="user_id" value="{{Auth::id()}}">
-            <div class="form-group">
-                <label for="teaching_material_id">教材</label>
-                <select name="teaching_material_id" id="teaching_material_id" class=" is-invalid">
-                    <option value='' disabled>Choose...</option>
-                    @foreach($teaching_materials as $teaching_material)
-                    <option value="{{$teaching_material->id}}">{{$teaching_material->title}}</option>
-                    @endforeach
-                </select>
-
-                @if($errors->has('teaching_material_id'))
-                @foreach($errors->get('teaching_material_id') as $message)
-                <div class="invalid-feedback">
-                    {{ $message }}
-                    </span>
-                    @endforeach
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label for="to_learn">学びたい、習得したい事</label>
-                    <input class=" is-invalid" type="text" name="to_learn" value="{{old('to_learn')}}">
-
-                    @if($errors->has('to_learn'))
-                    @foreach($errors->get('to_learn') as $message)
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                        </span>
-                        @endforeach
-                        @endif
+        <div class="card mt-3" style="width: 30rem; height:860px; margin:30px auto 50px auto; padding-bottom:10px;">
+            <div class="card-header">{{ __('スケジュール設定') }}</div>
+            <div class="card-body" style="margin: 0 auto; ">
+                <form action="{{route('setting_schedule.store')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="for_goal_id" value="{{$for_goal_id}}">
+                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                    <div class="">
+                        <label for="teaching_material_id">教材</label>
                     </div>
-                    <div class="form-group">
-                        <label for="first_day">開始日</label>
-                        <input class=" is-invalid" 　id="first_day" name="first_day" type="date" value="{{old('first_day')}}" />
-                        @if($errors->has('first_day'))
-                        @foreach($errors->get('first_day') as $message)
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                            </span>
+                    <div class="form-group" style="margin:0 0 30px 0;">
+                        <select name="teaching_material_id" id="teaching_material_id" class="form-control @error('teaching_material_id') is-invalid @enderror">
+                            <option value='' disabled>Choose...</option>
+                            @foreach($teaching_materials as $teaching_material)
+                            <option value="{{$teaching_material->id}}">{{$teaching_material->title}}</option>
                             @endforeach
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label for="last_day">終了日</label>
-                            <input class=" is-invalid" 　id="last_day" name="last_day" type="date" value="{{old('last_day')}}" />
-                            @if($errors->has('last_day'))
-                            @foreach($errors->get('last_day') as $message)
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                                </span>
-                                @endforeach
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="first_page">開始ページ</label>
-                                <input class=" is-invalid" 　id="first_page" name="first_page" value="{{old('first_page')}}" />
-                                @if($errors->has('first_page'))
-                                @foreach($errors->get('first_page') as $message)
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                    </span>
-                                    @endforeach
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <label for="last_page">終了ページ</label>
-                                    <input class=" is-invalid" 　id="last_page" name="last_page" value="{{old('last_page')}}">
-                                    @if($errors->has('last_page'))
-                                    @foreach($errors->get('last_page') as $message)
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                        </span>
-                                        @endforeach
-                                        @endif
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="daily_learning_page">一日の学習ページ</label>
-                                        <input class=" is-invalid" id="daily_learning_page" rows="3" name="daily_learning_page" value="{{old('daily_learning_page')}}">
-                                        @if($errors->has('daily_learning_page'))
-                                        <span class="invalid-feedback">
-                                            {{$errors->first('daily_learning_page')}}
-                                        </span>
-                                        @endif
-                                    </div>
-                                    <input type="submit" class="btn btn-primary">
-        </form>
+                        </select>
+                        @error('teaching_material_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="">
+                        <label for="to_learn">学びたい、習得したい事</label>
+                    </div>
+                    <div class="form-group" style="margin:0 0 30px 0;">
+                        <input class="form-control @error('to_learn') is-invalid @enderror" type="text" name="to_learn" value="{{old('to_learn')}}">
+                        @error('to_learn')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="">
+                        <label for="first_day">開始日</label>
+                    </div>
+                    <div class="form-group" style="margin:0 0 30px 0;">
+                        <input class="form-control @error('first_day') is-invalid @enderror" type="date" name="first_day" value="{{old('first_day')}}">
+                        @error('first_day')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="">
+                        <label for="last_day">終了日</label>
+                    </div>
+                    <div class="form-group" style="margin:0 0 30px 0;">
+                        <input class="form-control @error('last_day') is-invalid @enderror" type="date" name="last_day" value="{{old('last_day')}}">
+                        @error('last_day')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="">
+                        <label for="first_page">開始ページ</label>
+                    </div>
+                    <div class="form-group" style="margin:0 0 30px 0;">
+                        <input class="form-control @error('first_page') is-invalid @enderror" type="number" name="first_page" value="{{old('first_page')}}">
+                        @error('first_page')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="">
+                        <label for="last_page">終了ページ</label>
+                    </div>
+                    <div class="form-group" style="margin:0 0 30px 0;">
+                        <input class="form-control @error('last_page') is-invalid @enderror" type="number" name="last_page" value="{{old('last_page')}}">
+                        @error('last_page')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="">
+                        <label for="daily_learning_page">一日の学習ページ</label>
+                    </div>
+                    <div class="form-group" style="margin:0 0 30px 0;">
+                        <input class="form-control @error('daily_learning_page') is-invalid @enderror" type="number" name="daily_learning_page" value="{{old('daily_learning_page')}}">
+                        @error('daily_learning_page')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <input type="submit" class="btn edit-btn btn-link mt-3 mb-5" style="width: 180px; margin: 100px " value="作成">
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 </div>
 @endsection

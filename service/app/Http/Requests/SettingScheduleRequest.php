@@ -30,6 +30,7 @@ class SettingScheduleRequest extends FormRequest
             "first_day"=>["date","required"],
             "first_page"=>["integer","required"],
             "last_page"=>["integer","required"],
+            "daily_learning_page"=>["integer","required"]
         ];
     }
 
@@ -47,6 +48,8 @@ class SettingScheduleRequest extends FormRequest
             "first_page.required"=>"教材の開始位置を入力してください",
             "last_page.integer"=>"数値型で入力してください",
             "last_page.required"=>"教材の終了位置を入力してください",
+            "daily_learning_page.integer"=>"数値型で入力してください",
+            "daily_learning_page.required"=>"一日の学習ページを入力してください"
         ];
     }
 }
