@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="card mt-3" style="width: 30rem; height:500px; margin:0 auto;">
-            <div class="card-header">{{ __('Login') }}</div>
+            <div class="card-header">{{ __('教材') }}</div>
             <div class="card-body" style="margin: 0 auto;">
                 <form action="{{route('teaching_material.store')}}" method="post">
                     @csrf

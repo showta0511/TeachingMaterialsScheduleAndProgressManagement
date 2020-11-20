@@ -541,6 +541,7 @@ li {
 .delete-btn:hover {
     background-color: #FF5B5B;
     box-shadow: inset 0 -3.5px 0 0 #FF5B5B;
+    border-color: #FF5B5B ;
 }
 
 .link {
@@ -623,4 +624,40 @@ li {
 
 .div-label {
     padding-left: 110px;
+}
+
+.setting_btn:hover{
+    opacity: 0;
+    background-color: #FF5B5B !important;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0 #30c8d6;
+}
+
+.set_link:hover{
+    border:1px solid #30c8d6;
+    padding:0 0 10px 8px;
+    text-decoration: none;
+    box-shadow: inset 0 0 0 0 #30c8d6;
+}
+
+.setting_li_1{
+    margin-right: 250px;
+    margin-left: 10px;
+}
+
+.setting_li_2{
+    margin-right: 10px;
+}
+
+.schedule-title{
+    color: #2b546a;
+}
+
+.schedule-title:hover{
+    text-decoration: none;
+    box-shadow:none;
+    color: #30c8d6;
 }

@@ -42,7 +42,8 @@ class SettingScheduleController extends Controller
     {
         $setting_schedule=SettingSchedule::find($schedule);
         $schedule=Schedule::where("setting_schedule_id",$setting_schedule->id)->first();
-        $param=compact("setting_schedule","schedule");
+        $teaching_material=TeachingMaterial::find($setting_schedule->teaching_material_id);
+        $param=compact("setting_schedule","schedule","teaching_material");
         return view("SettingSchedules.show",$param);
     }
 
