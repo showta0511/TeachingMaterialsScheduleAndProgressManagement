@@ -6,8 +6,11 @@
         <div id="" class="container content-card mt-5 mb-5 p-4  collapse show" style="">
             <h1>スケジュール</h1>
             <div class="container">
-                <p>以下の内容で作成してよろしいですか？</p>
-                <p>作成後編集可能です。</p>
+                <p>以下の内容で作成してよろしいですか？
+                    <br>
+                    *作成後編集可能です。
+                </p>
+
                 <form action="{{route('schedule.generation_schedule_save',['setting_schedule'=>$setting_schedule])}}" method="post">
                     <table class="table mt-5">
                         <thead>
@@ -19,7 +22,7 @@
                         </thead>
                         <tbody>
                             @csrf
-                            <input type="submit" value="はい">
+                            <input type="submit" value="はい" class="btn edit-btn btn-link mb-3">
                             @for ($i=0; $i<=$learning_period; $i++) <!-- 開始ページの計算処理を$pageに代入 -->
                                 <?php $page = $first_page + ($daily_learning_page * $i) ?>
                                 @if($first_page === $last_page)

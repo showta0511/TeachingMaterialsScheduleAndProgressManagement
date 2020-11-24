@@ -4,7 +4,7 @@
 
 @media(max-width: 9999px) {
     .li-link {
-        padding-left: 900px;
+        padding-left: 800px;
     }
     .media-btn{
         margin-left:480px;
@@ -13,7 +13,7 @@
 
 @media(max-width: 1200px) {
     .li-link {
-        padding-left: 900px;
+        padding-left: 600px;
     }
     .media-btn{
         margin-left:480px;
@@ -22,7 +22,7 @@
 
 @media(max-width: 999px) {
     .li-link {
-        padding-left: 700px;
+        padding-left: 500px;
     }
     .media-btn{
         margin-left:380px;
@@ -31,7 +31,7 @@
 
 @media(max-width: 800px) {
     .li-link {
-        padding-left: 600px;
+        padding-left: 300px;
     }
     .media-btn{
         margin-left:280px;
@@ -39,14 +39,18 @@
 }
 
 @media(max-width: 750px) {
-
+    .li-link {
+        padding-left: 150px;
+    }
     .media-btn{
         margin-left:180px;
     }
 }
 
 @media(max-width: 530px) {
-
+    .li-link {
+        padding-left: 50px;
+    }
     .media-btn{
         margin-left:80px;
     }
