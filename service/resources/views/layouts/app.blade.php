@@ -53,7 +53,7 @@
                         <nav class="header-navs__left">
                             <div class="header-div" style="background-color: #2b546a; color: #fff; width: 55px;">
                                 <a class="header-navs_logo" href="{{ route('goal.index') }}" style="font-size: 0.82rem; width: 55px;">
-                                    <img style="width: 52px; height: 52px;" class="header-logo" src="/TeachingMaterialsScheduleAndProgressManagement/service/resources/images/ヘッダーロゴ.png" alt="">
+                                    <img style="width: 52px; height: 52px;" class="header-logo" src="/TeachingMaterialsScheduleAndProgressManagement/service/resources/images/ヘッダーロゴ.png" alt="ヘッダーロゴ">
                                 </a>
 
                             </div>
